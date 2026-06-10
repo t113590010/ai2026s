@@ -52,7 +52,7 @@
             .style("opacity", 0);
 
         // 設定為自己字的檔名
-        var myImg = "114598033.png";
+        var myImg = "113590010.png";
         
         d3.csv("results.csv").then(function(data) {
 
@@ -108,23 +108,26 @@
                 .style("cursor", "pointer");
 
             // 畫圓 (將半徑 r 縮小到 14)
-            node.append("circle")
-                .attr("r", 14) 
-                .style("fill", function(d) {
-                    return d.Student === myImg ? "#ff0000" : "#187C19"; 
+            node.append("rect")
+                .attr("width", 36)
+                .attr("height", 36)
+                .attr("x", -18)
+                .attr("y", -18)
+                .style("fill", "rgba(0,0,0,0)")
+                .style("stroke", function(d) {
+                    return d.Student === myImg ? "#ff0000" : "#187C19";
                 })
-                .style("stroke", "white")
-                .style("stroke-width", "1.5px");
+                .style("stroke-width", "2px");
 
             // 加入圖片
             node.append("image")
                 .attr("xlink:href", function(d) { 
                     return "img/" + d.Student; // 讀取圖片路徑
                 }) 
-                .attr("x", -10) // 往左平移一半寬度以置中
-                .attr("y", -10) // 往上平移一半高度以置中
-                .attr("width", 20) // 圖片寬度
-                .attr("height", 20) // 圖片高度
+                .attr("x", -17)
+                .attr("y", -17)
+                .attr("width", 34)
+                .attr("height", 34)
                 .style("pointer-events", "none"); // 確保滑鼠事件由群組接管
 
             // Tooltip 綁定到整個 node 群組上
